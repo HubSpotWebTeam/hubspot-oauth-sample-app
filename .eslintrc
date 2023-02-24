@@ -1,0 +1,3 @@
+{
+  "extends": "@hs-web-team/eslint-config-node"
+}

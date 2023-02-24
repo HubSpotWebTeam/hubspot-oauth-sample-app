@@ -19,7 +19,7 @@ async function getAccessToken(code) {
   return response.data;
 }
 
-exports.main = async ({ params, accountId, contact }, sendResponse) => {
+exports.main = async ({ params, accountId }, sendResponse) => {
   try {
     // Redirect to a final url
     const redirectURL = `https://app.hubspot.com/settings/${accountId}`;
@@ -29,8 +29,9 @@ exports.main = async ({ params, accountId, contact }, sendResponse) => {
     const { access_token } = tokenObject;
 
     // INSERT HERE YOUR LOGIC
+    console.log(access_token);
   
-    sendResponse({ headers: { "Location": redirectURL }, statusCode: 301 });
+    sendResponse({ headers: { Location: redirectURL }, statusCode: 301 });
   } catch (error) {
     let errorMessage = `message: ${error.message}`;
 
