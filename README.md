@@ -48,7 +48,24 @@ Once the app is created, you will see that some fields have been populated, you 
 
 ![Create App Step 3](./docs/assets/create_app_3.png)
 
+## Diagram of the OAuth Process
+
+This is a simplified diagram of the whole OAuth Process, essentially the following steps are executed:
+
+- User goes to the Install URL
+- User logs in with his own credentials and selects a portal
+- User is asked to connect with our app, showing the scopes required
+- User is redirected to the Redirect URL address with the `code` added as a query parameter
+- The CMS function, which is our Redirect URL, reads the `code`, and uses it alongside the `Client ID`, the `Client secret` and the `Redirect URL` to fetch the `accessToken` from HubSpot API
+- Once the `accessToken` is available, you can use it to query HubSpot API with it according to the scopes selected.
+- When everything is processed, the user is redirected to a final URL, a TYP (Thank You Page) or anything else.
+
+![OAuth Process](./docs/assets/OAuth-Process.png)
+
 ## Create the secrets
+
+In order to have our 
+
 
 ## Resources
 
