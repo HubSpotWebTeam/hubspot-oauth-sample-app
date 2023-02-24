@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "hs:config": "hs init",
-    "hs:auth": "hs auth",
-    "upload": "hs upload functions/ functions/",
-    "deploy": "npm run upload"
+    "upload": "hs upload functions/oauth-app.functions functions/oauth-app.functions",
+    "deploy": "npm run upload && hs functions deploy functions/oauth-app.functions",
   },
   "keywords": [],
   "author": "",

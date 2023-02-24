@@ -8,7 +8,7 @@
     "HS_OAUTH_REDIRECT_URI"
   ],
   "endpoints": {
-    "sample-app": {
+    "sample-oauth": {
       "method": "GET",
       "file": "index.js"
     }
