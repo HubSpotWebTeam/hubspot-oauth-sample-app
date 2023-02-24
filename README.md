@@ -49,3 +49,8 @@ Once the app is created, you will see that some fields have been populated, you 
 ![Create App Step 3](./docs/assets/create_app_3.png)
 
 ## Create the secrets
+
+## Resources
+
+- [HubSpot CLI Docs](https://developers.hubspot.com/docs/cms/developer-reference/local-development-cli)
+- [HubSpot OAuth Quick Start](https://developers.hubspot.com/docs/api/oauth-quickstart-guide)
