@@ -1,32 +1,33 @@
 const axios = require('axios');
-const url = require('url');
 
 const {
   HS_OAUTH_CLIENT_ID,
   HS_OAUTH_CLIENT_SECRET,
   HS_OAUTH_REDIRECT_URI,
-} = process.env
+} = process.env;
 
 async function getAccessToken(code) {
-  const params = new url.URLSearchParams({
+  const params = new URLSearchParams({
     grant_type: 'authorization_code',
     client_id: HS_OAUTH_CLIENT_ID,
     client_secret: HS_OAUTH_CLIENT_SECRET,
     redirect_uri: HS_OAUTH_REDIRECT_URI,
-    code
+    code,
   });
 
-  const response = await axios.post('https://api.hubapi.com/oauth/v1/token', params.toString())
-  return response.data
+  const response = await axios.post('https://api.hubapi.com/oauth/v1/token', params.toString());
+  return response.data;
 }
 
 
 exports.main = async ({ params, accountId, contact }, sendResponse) => {
   try {
-    const redirectURL = `https://app.hubspot.com/settings/${accountId}/website/themes`
+    // Redirect to a final url
+    const redirectURL = `https://app.hubspot.com/settings/${accountId}`;
+    // Get the code from the params
     const { code } = params;
-    const tokenObject = await getAccessToken(`${code}`)
-    const { access_token } = tokenObject
+    const tokenObject = await getAccessToken(`${code}`);
+    const { access_token } = tokenObject;
 
 
     sendResponse({ headers: { "Location": redirectURL }, statusCode: 301 });
