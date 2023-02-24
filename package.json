@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "upload": "hs upload functions/oauth-app.functions functions/oauth-app.functions",
-    "deploy": "npm run upload && hs functions deploy functions/oauth-app.functions"
+    "deploy": "npm run upload && hs functions deploy functions/oauth-app.functions",
+    "lint": "eslint --ext .js ./functions/"
   },
   "engines": {
     "node": ">=18.0.0"
