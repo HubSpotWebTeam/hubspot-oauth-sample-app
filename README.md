@@ -64,8 +64,40 @@ This is a simplified diagram of the whole OAuth Process, essentially the followi
 
 ## Create the secrets
 
-In order to have our 
+In order to have our retrieve the `accessToken` from the HubSpot API, we need to use the `code` we received from the OAuth url, and combine it with the `Client ID`, `Client secret` and `Redirect URL`, and these variables should NEVER be stored in the code, but they must be retrieved from environmental variables, stored as Secrets in the CMS.
 
+Once you have the values, simply run the following commands:
+
+```shell
+hs secrets add HS_OAUTH_CLIENT_ID
+```
+
+You will be ask to add the `Client ID` that you can find in the App page in your portal, and if it's successful you should see something like this:
+
+![Secret added](./docs/assets/add_secret.png)
+
+Now rinse and repeat with the other secrets:
+
+```shell
+# Add the Client Secret
+hs secrets add HS_OAUTH_CLIENT_ID
+
+# Add the Redirect URL
+hs secrets add HS_OAUTH_REDIRECT_URI
+```
+
+## Deploy the CMS Function
+
+Once the secrets are saved in the CMS, you can add your logic in the `main` function in the `functions/oauth-app.functions/index.js` file where you see `// INSERT HERE YOUR LOGIC`.
+Once the logic is in place, simply deploy the function to your portal by running the following command:
+
+```shell
+npm run deploy
+```
+
+The code above will upload the code, and deploy the CMS Function, from there you can also get the final Redirect URL, in case it's different from the one you entered at the beginning.
+
+![Deploy](./docs/assets/deploy.png)
 
 ## Resources
 

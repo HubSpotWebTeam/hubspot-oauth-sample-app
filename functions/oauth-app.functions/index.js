@@ -19,7 +19,6 @@ async function getAccessToken(code) {
   return response.data;
 }
 
-
 exports.main = async ({ params, accountId, contact }, sendResponse) => {
   try {
     // Redirect to a final url
@@ -29,7 +28,8 @@ exports.main = async ({ params, accountId, contact }, sendResponse) => {
     const tokenObject = await getAccessToken(`${code}`);
     const { access_token } = tokenObject;
 
-
+    // INSERT HERE YOUR LOGIC
+  
     sendResponse({ headers: { "Location": redirectURL }, statusCode: 301 });
   } catch (error) {
     let errorMessage = `message: ${error.message}`;
