@@ -1,0 +1,16 @@
+{
+  "runtime": "nodejs18.x",
+  "version": "1.0",
+  "environment": {},
+  "secrets": [
+    "HS_OAUTH_CLIENT_ID",
+    "HS_OAUTH_CLIENT_SECRET",
+    "HS_OAUTH_REDIRECT_URI"
+  ],
+  "endpoints": {
+    "sample-app": {
+      "method": "GET",
+      "file": "index.js"
+    }
+  }
+}

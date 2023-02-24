@@ -1,0 +1,4 @@
+node_modules/
+
+# Hubspot
+hubspot.config.yml
