@@ -29,6 +29,7 @@ exports.main = async ({ params, accountId }, sendResponse) => {
     const { access_token } = tokenObject;
 
     // INSERT HERE YOUR LOGIC
+    console.log(access_token);
 
     sendResponse({ headers: { Location: redirectURL }, statusCode: 301 });
   } catch (error) {
