@@ -62,6 +62,18 @@ This is a simplified diagram of the whole OAuth Process, essentially the followi
 
 ![OAuth Process](./docs/assets/OAuth-Process.png)
 
+## User journey
+
+The user will go to the installation link, that it will guide them to the initial authentication process, where they need to login and select a portal, like the following image:
+
+![User Login](./docs/assets/user_flow_1.png)
+
+After that the user will have to link the App with their portal, confirming the permissions needed by the app, as shown below:
+
+![User Permissions](./docs/assets/user_flow_2.png)
+
+After the permission is granted, the user will be redirected to the Redirect URL set in the app settings, with the `code` query parameter that will be used by the CMS Function to get the actual access token.
+
 ## Create the secrets
 
 In order to have our retrieve the `accessToken` from the HubSpot API, we need to use the `code` we received from the OAuth url, and combine it with the `Client ID`, `Client secret` and `Redirect URL`, and these variables should NEVER be stored in the code, but they must be retrieved from environmental variables, stored as Secrets in the CMS.
@@ -98,6 +110,45 @@ npm run deploy
 The code above will upload the code, and deploy the CMS Function, from there you can also get the final Redirect URL, in case it's different from the one you entered at the beginning.
 
 ![Deploy](./docs/assets/deploy.png)
+
+## CMS Function context
+
+The function will receive a context containing some important values, the key ones that can be useful are the following:
+
+- `params` The url query params passed to the function
+- `body` The body of the requests, if the request is GET it will be an empty object
+- `secrets` The secrets used by the function, also available from `process.env`
+- `accountId` The account ID for the portal selected
+- `method` The HTTP Method used for the endpoint
+- `limits` The function limits, containing the `executionsRemaining` and `timeRemaining`
+
+The context will be the first parameter received by the function, while the second one will be the `sendResponse` callback function, that needs to be used to return a response.
+
+The exported function should look somethink like this:
+
+```javascript
+exports.main = async ({ params, accountId }, sendResponse) => {
+  try {
+    /**
+     * Your logic here
+     */
+
+    sendResponse({
+      statusCode: 200,
+      body: {
+        hello: 'world',
+      },
+    });
+  } catch (error) {
+    sendResponse({
+      statusCode: 500,
+      body: {
+        error: error.message
+      },
+    });
+  }
+
+```
 
 ## Resources
 

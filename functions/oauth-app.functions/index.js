@@ -30,8 +30,8 @@ exports.main = async ({ params, accountId }, sendResponse) => {
 
     // INSERT HERE YOUR LOGIC
     console.log(access_token);
-  
-    sendResponse({ headers: { Location: redirectURL }, statusCode: 301 });
+    sendResponse({ body: { access_token }, statusCode: 200 });
+    // sendResponse({ headers: { Location: redirectURL }, statusCode: 301 });
   } catch (error) {
     let errorMessage = `message: ${error.message}`;
 
