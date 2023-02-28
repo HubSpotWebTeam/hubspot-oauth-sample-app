@@ -4,6 +4,7 @@
   "description": "Sample OAuth Application",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "upload": "hs upload functions/oauth-app.functions functions/oauth-app.functions",
     "deploy": "npm run upload && hs functions deploy functions/oauth-app.functions",
     "lint": "eslint --ext .js ./functions/"
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "@hs-web-team/eslint-config-node": "^0.2.3",
-    "@hubspot/cli": "^4.1.6"
+    "@hubspot/cli": "^4.1.6",
+    "copy-webpack-plugin": "^11.0.0",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
