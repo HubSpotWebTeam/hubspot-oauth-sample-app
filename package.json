@@ -1,11 +1,13 @@
 {
   "name": "hubspot-oauth-app",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Sample OAuth Application",
   "main": "index.js",
   "scripts": {
     "upload": "hs upload functions/oauth-app.functions functions/oauth-app.functions",
+    "watch": "hs watch functions/oauth-app.functions functions/oauth-app.functions",
     "deploy": "npm run upload && hs functions deploy functions/oauth-app.functions",
+    "readme:index": "npx md-index-generator README.md --replace --title 'Table of contents'",
     "lint": "eslint --ext .js ./functions/"
   },
   "engines": {
@@ -19,6 +21,6 @@
   },
   "devDependencies": {
     "@hs-web-team/eslint-config-node": "^0.2.3",
-    "@hubspot/cli": "^4.1.6"
+    "@hubspot/cli": "^4.1.7"
   }
 }

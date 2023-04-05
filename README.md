@@ -2,6 +2,24 @@
 
 This is a sample project to be used as a starting point to use the HubSpot OAuth flow for simple apps.
 
+<!-- index-start -->
+## Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Pre-requisites](#pre-requisites)
+- [Installation](#installation)
+- [Project Configuration](#project-configuration)
+- [Development](#development)
+- [Create an app on HubSpot](#create-an-app-on-hubspot)
+- [Diagram of the OAuth Process](#diagram-of-the-oauth-process)
+- [User journey](#user-journey)
+- [Create the secrets](#create-the-secrets)
+- [Deploy the CMS Function](#deploy-the-cms-function)
+- [CMS Function context](#cms-function-context)
+- [Code Quality](#code-quality)
+- [Resources](#resources)
+<!-- index-end -->
+
 ## Pre-requisites
 
 - Node.js 18.x or above
@@ -29,6 +47,24 @@ If you want to add more portal to it, you can run the following command:
 ```sh
 hs auth
 ```
+
+## Development
+
+You should always consider the repo as the source of truth, and you should never work directly on the Design Manager (DM), but apply the changes on your local machine, and then upload them to the DM with the given npm scripts.
+
+You can either run the upload once, with:
+
+```sh
+npm run upload
+```
+
+Or you can run this instead to watch for changes:
+
+```sh
+npm run watch
+```
+
+For more info you can read the [upload command docs](https://developers.hubspot.com/docs/cms/developer-reference/local-development-cli#upload) or the [watch command docs](https://developers.hubspot.com/docs/cms/developer-reference/local-development-cli#watch).
 
 ## Create an app on HubSpot
 
@@ -148,6 +184,14 @@ exports.main = async ({ params, accountId }, sendResponse) => {
     });
   }
 
+```
+
+## Code Quality
+
+Code quality is extremely important in our code, at a minimum we expect to respect our linting standards, and this repo comes with a set of ESLint rules, and you can run the linter with the following command:
+
+```sh
+npm run lint
 ```
 
 ## Resources
