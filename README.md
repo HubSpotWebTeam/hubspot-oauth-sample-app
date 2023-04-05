@@ -5,16 +5,18 @@ This is a sample project to be used as a starting point to use the HubSpot OAuth
 <!-- index-start -->
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
 - [Project Configuration](#project-configuration)
-- [Working locally](#working-locally)
+- [Development](#development)
 - [Create an app on HubSpot](#create-an-app-on-hubspot)
 - [Diagram of the OAuth Process](#diagram-of-the-oauth-process)
 - [User journey](#user-journey)
 - [Create the secrets](#create-the-secrets)
 - [Deploy the CMS Function](#deploy-the-cms-function)
 - [CMS Function context](#cms-function-context)
+- [Code Quality](#code-quality)
 - [Resources](#resources)
 <!-- index-end -->
 
@@ -182,6 +184,14 @@ exports.main = async ({ params, accountId }, sendResponse) => {
     });
   }
 
+```
+
+## Code Quality
+
+Code quality is extremely important in our code, at a minimum we expect to respect our linting standards, and this repo comes with a set of ESLint rules, and you can run the linter with the following command:
+
+```sh
+npm run lint
 ```
 
 ## Resources
