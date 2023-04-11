@@ -3,50 +3,124 @@
 This is a sample project to be used as a starting point to use the HubSpot OAuth flow for simple apps.
 
 <!-- index-start -->
-## Table of contents
+## Index
 
-- [Table of contents](#table-of-contents)
+- [Requirements](#requirements)
+- [Cloning this repository](#cloning-this-repository)
 - [Pre-requisites](#pre-requisites)
-- [Installation](#installation)
-- [Project Configuration](#project-configuration)
+- [Getting Started](#getting-started)
+  - [What about Private Apps?](#what-about-private-apps)
 - [Development](#development)
+  - [Coding standards](#coding-standards)
+  - [Linting Script](#linting-script)
+  - [Githooks](#githooks)
 - [Create an app on HubSpot](#create-an-app-on-hubspot)
 - [Diagram of the OAuth Process](#diagram-of-the-oauth-process)
 - [User journey](#user-journey)
 - [Create the secrets](#create-the-secrets)
 - [Deploy the CMS Function](#deploy-the-cms-function)
 - [CMS Function context](#cms-function-context)
-- [Code Quality](#code-quality)
 - [Resources](#resources)
 <!-- index-end -->
 
-## Pre-requisites
+## Requirements
 
 - Node.js 18.x or above
 - Install the Hubspot CLI
 - A Developer Account on HubSpot, [click here to create one](https://developers.hubspot.com/get-started)
 
-## Installation
+## Cloning this repository
+
+This is a template repository, so you shouldn't clone directly this one, unless you really need to modify this very repo, but you can create a new repo using this repository as a template, just click the button `Use this template` and select the option `Create a new repository` as shown in the image below:
+
+![Create a new repo](./docs/assets/new_repo_from_template.png)
+
+<!-- requirements/public-cms-start -->
+## Pre-requisites
+
+You must install the HubSpot CLI tools. We recommend installing them globally:
 
 ```sh
-npm run install
+npm install -g @hubspot/cli
+
+# verify is installed
+hs --version # outputs 4.1.7
+
 ```
 
-Then you will need to install the HubSpot CLI, simply run `npm install -g @hubspot/cli`, and verify is installed by doing `hs --version`.
+Once installed you should be able to access to the CLI using the `hs` command.
 
-## Project Configuration
+You should be familiar with the following technologies:
 
-In order to upload and deploy the code to an HubSpot Portal, you need to create the `hubspot.config.yml` configuration file, to create one with the first portal, simply run the following command and follow instructions:
+- [HubSpot CMS](https://developers.hubspot.com/docs/cms)
+- **Git** & **Github** for branch management and version control
+- [HubL](https://developers.hubspot.com/docs/cms/hubl)
+- Javascript, HTML, and CSS
+
+<!-- requirements/public-cms-end -->
+<!-- setup/public-cms-getting-started-start -->
+## Getting Started
+
+Create a new repository from this template and clone it locally.
+
+Then install the dependencies:
+
+```sh
+npm install
+```
+
+Next create HubSpot config file to link your local project to your CMS portal:
+
+> if you don't have a HubSpot developer account, you need create one [here](https://app.hubspot.com/signup-hubspot/cms-developers) before moving on.
+
+Run the following command in your terminal:
 
 ```sh
 hs init
 ```
 
-If you want to add more portal to it, you can run the following command:
+This will walk you through the steps needed to create your config file:
 
-```sh
-hs auth
+1. First you'll create a personal CMS access key to enable authenticated access to your account via the local development tools
+
+2. Next, you’ll enter a name for the account. We recommend using `DEV` for your sandbox portal, but you can use any name you like.
+
+Once completed a `hubspot.config.yml` will be created in your current directory. It will look something like this:
+
+```yaml
+defaultPortal: DEV
+portals:
+  - name: DEV
+    portalId: 12345
+    authType: personalaccesskey
+    personalAccessKey: >-
+      xxxxxxxxx-xxxxxxx-xxxxxxx-xxxxxxx-xxxxxxxx
+    auth:
+      tokenInfo:
+        accessToken: >-
+          xxxxxxxxx-xxxxxxx-xxxxxxx-xxxxxxx-xxxxxxxx
+        expiresAt: "2023-12-12T19:38:39.164Z"
 ```
+
+That's it, you can now start developing locally.
+
+> **Note**
+>
+> While there is an  `expiresAt` value for the personal access key, the CMS CLI will handle reauthentication for you without further commands needed.
+
+To authenticate to additional portals using a personal access key, run `hs auth personalaccesskey`. Those additional portals will be added to your hubspot.config.yml file.
+
+> **Note**
+>
+> The `auth` node will be automatically added by the hubspot CLI once the user is authenticated via the Personal Access Key.
+
+If you just need to obtain the Personal Access Key, you can simply click [here](https://app.hubspot.com/portal-recommend/l?slug=personal-access-key) and select the portal you want to use to authenticate.
+
+### What about Private Apps?
+
+At the moment of writing the package `@husbpot/cli`, which we use to deploy code to the CMS, does not support Private Apps. It will be added in the future, but for now we can only use the Personal Access Key method.
+
+<!-- setup/public-cms-getting-started-end -->
 
 ## Development
 
@@ -65,6 +139,38 @@ npm run watch
 ```
 
 For more info you can read the [upload command docs](https://developers.hubspot.com/docs/cms/developer-reference/local-development-cli#upload) or the [watch command docs](https://developers.hubspot.com/docs/cms/developer-reference/local-development-cli#watch).
+
+<!-- contributing/public-code-standards-start -->
+### Coding standards
+
+We include a custom EsLint and Stylelint configurations. Please refrain from disabling or changing these rules, as they are designed to help you maintain a coding standard consistent with our own.
+
+These rules are enforced by our CI/CD pipeline, so if you disable or change them, your project will fail to build.
+
+We recommend installing the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) extensions for VSCode to help you maintain a consistent coding style.
+
+<!-- contributing/public-code-standards-end -->
+
+### Linting Script
+
+To check your linting you can run the following command:
+
+```sh
+npm run lint
+```
+
+<!-- contributing/public-githooks-start -->
+### Githooks
+
+We have included pre-commit and pre-push hooks that will run the linters and any tests before you commit or push your code. If any of these fail, you will not be able to commit or push your code.
+
+Hooks should be set up automatically when you run `npm install`. If you have issues you may need to update your git version to support hooks. You can manually set up the hooks by running:
+
+```sh
+npm run prepare
+```
+
+<!-- contributing/public-githooks-end -->
 
 ## Create an app on HubSpot
 
@@ -184,14 +290,6 @@ exports.main = async ({ params, accountId }, sendResponse) => {
     });
   }
 
-```
-
-## Code Quality
-
-Code quality is extremely important in our code, at a minimum we expect to respect our linting standards, and this repo comes with a set of ESLint rules, and you can run the linter with the following command:
-
-```sh
-npm run lint
 ```
 
 ## Resources
