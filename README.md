@@ -42,9 +42,12 @@ You must install the HubSpot CLI tools. We recommend installing them globally:
 
 ```sh
 npm install -g @hubspot/cli
+
+# verify is installed
+hs --version # outputs 4.1.7
+
 ```
 
-To use the cms-cli, you must install the HubSpot CLI client first, which you can do by running `sudo npm install -g @hubspot/cli`.
 Once installed you should be able to access to the CLI using the `hs` command.
 
 You should be familiar with the following technologies:
