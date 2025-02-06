@@ -1,6 +1,6 @@
 {
   "name": "hubspot-oauth-app",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Sample OAuth Application",
   "main": "index.js",
   "scripts": {
@@ -17,10 +17,10 @@
   "author": "HubSpot Marketing WebTeam",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.5"
+    "axios": "^1.7.9"
   },
   "devDependencies": {
-    "@hs-web-team/eslint-config-node": "^0.3.0",
-    "@hubspot/cli": "^5.1.1"
+    "@hs-web-team/eslint-config-node": "^0.3.1",
+    "@hubspot/cli": "^7.0.2"
   }
 }
